@@ -1,25 +1,23 @@
 import telnyx
-import sys
 
-telnyx.api_key = "KEY0178F16E51822582E984953ECBBF48B9_1gYddzeO4FWNim7LXwVBXt" #enter your api key here
-
-path = 'numbers.txt'
-
-your_telnyx_number = "+13115552368"
+telnyx.api_key = "KEY0178F16E51822582E984953ECBBF48B9_1gYddzeO4FWNim7LXwVBXt"
+phone_numbers = open('numbers.txt', mode='r',
+                     encoding='utf-8').read().split('\n')
+sms_sender = "+12182274002"
 body = 'BODY TEXT GOES HERE'
 
-with open(path) as fp:
-   line = fp.readline()
-   
-   while line:
-       print("Sending SMS to: {}".format(line.strip()))
-       telnyx.Message.create(
-             from_=your_telnyx_number,
-             to=line.strip(),
-             text=body,
-       )
-       line = fp.readline()
-
-
-
+for number in phone_numbers:
+        
+        if number == "":
+            continue
+        print("Sending message to {}".format(number))
+        try:
+            telnyx.Message.create(
+            from_= sms_sender,
+            to=number,
+            text=body,
+        )
+        except Exception as e:
+            print("Failed to send sms\n")
+            print(str(e))
 
