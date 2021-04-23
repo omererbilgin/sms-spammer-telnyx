@@ -1,9 +1,9 @@
 import telnyx
 
-telnyx.api_key = "KEY0178F16E51822582E984953ECBBF48B9_1gYddzeO4FWNim7LXwVBXt"
+telnyx.api_key = "API KEY HERE"
 phone_numbers = open('numbers.txt', mode='r',
                      encoding='utf-8').read().split('\n')
-sms_sender = "+12182274002"
+sms_sender = "SENDER NUMBER"
 body = 'BODY TEXT GOES HERE'
 
 for number in phone_numbers:
